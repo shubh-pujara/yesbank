@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YesBank Privacy & Cookie Settings</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<style>
+    body {
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Disable scrolling */
+    height: 100vh;
+    width: 100vw;
+}
+
+
+.image-container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.background {
+    width: 100%;
+    height: auto;
+}
+.navbar-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    display: flex;
+
+    align-items: right;
+    z-index: 1000;
+    /* background-color: #051e33;  */
+    background-color: #E9EBF6;
+    padding: 18px 0; /* Reduce height for a smaller navbar */
+    padding-right: 8px;
+
+    display: flex;
+    justify-content: right; /* Center align navbar items */
+    align-items: right;
+}
+
+.navbar-custom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar-custom a {
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.navbar-custom a:hover {
+    /* color: #00aaff;  */
+    color: #051e33; 
+
+}
+
+.navbar-custom i {
+    font-size: 18px;
+}
+
+/* Hide text for smaller screens */
+@media (max-width: 768px) {
+    .navbar-custom a {
+        display: none;
+    }
+
+    .navbar-custom i {
+        display: block;
+        font-size: 20px;
+    }
+}
+
+
+/* Push content down so navbar doesn't overlap */
+body {
+    padding-top: 60px; /* Adjust as needed */
+}
+
+
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 800px;
+    background: white; /* Clean white background */
+    padding: 15px 20px;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left; /* Keeps text left-aligned */
+    font-size: 14px;
+}
+
+.cookie-content {
+    max-width: 600px;
+    text-align: left; /* Ensures text is left-aligned */
+}
+
+.cookie-content p {
+    margin-bottom: 10px;
+}
+
+.cookie-buttons {
+    display: flex;
+    justify-content: flex-start; /* Aligns buttons to the left */
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.cookie-buttons .btn {
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.cookie-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
+.language-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.language-grid button {
+    flex: 1 1 calc(20% - 12px); /* 5 buttons per row */
+    max-width: 18%;
+    padding: 14px 18px;
+    background: #f8f9fa; /* Light subtle background */
+    color: #333; /* Darker text for readability */
+    border: 2px solid #ddd; /* Soft border */
+    border-radius: 8px; /* Rounded edges */
+    cursor: pointer;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.language-grid button:hover {
+    background: #007bff; /* Bootstrap primary blue */
+    color: white;
+    border-color: #007bff;
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+/* Ensures proper alignment of the last row */
+.language-grid button:nth-last-child(-n+3) {
+    flex-grow: 0;
+    max-width: auto;
+}
+
+
+
+.pdf-container {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+/* Custom modal width */
+.modal-custom-size {
+    max-width: 600px; /* Decreased width */
+}
+
+/* Reduce overall padding and margins */
+.modal-content {
+    padding: 10px;
+}
+
+/* Reduce font sizes */
+.modal-title {
+    font-size: 16px;
+}
+
+.cookie-intro {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Style for the cookie category blocks */
+.cookie-category {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px; /* Reduced font size */
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Cookie description text */
+.cookie-description {
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.btn-sm {
+    font-size: 12px;
+    padding: 5px 8px;
+}
+
+/* Toggle switch styling */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 16px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 16px;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #007bff;
+}
+
+/* Rounded slider */
+.toggle-switch .slider::before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider::before {
+    transform: translateX(16px);
+}
+
+/* Reduce spacing in footer */
+.modal-footer {
+    padding: 10px;
+}
+
+/* Accept All button styling */
+.accept-all-container {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+
+
+
+</style>
+
+
+</head>
+<body>
+
+
+
+    <!-- Navbar -->
+    <div class="navbar-container">
+        <b>
+        <div class="navbar-custom">
+            <a href="#mainContent">Skip to Main Content</a>
+            <a href="#">A-</a>
+            <a href="#">A</a>
+            <a href="#">A + </a>
+            <!-- <a href="#"><i class="fas fa-map-marker-alt"></i></a>
+            <a href="#"><i class="fas fa-gift"></i></a> -->
+            <a href="#" data-bs-toggle="modal" data-bs-target="#languageModal">Privacy Notice</a>
+        </div>
+    </b>
+    </div>
+
+    <!-- Background Image -->
+    <div class="image-container">
+        <img src="YesBank-NoNav.png" alt="Demo Image" class="background">
+    </div>
+
+
+    
+    <!-- Cookie Banner -->
+    <div class="cookie-banner">
+        <div class="cookie-content">
+            <p>
+                We use cookies to analyze traffic and deliver personalized content. Click “Accept and Continue” to allow all cookies. Click "Customize cookies" to allow certain categories of cookies. Click the “X” to only allow cookies vital to the website running. Update your cookie settings from our <a href ="/">Cookie Policy</a>.
+            </p>
+            <div class="cookie-buttons">
+                <button class="btn btn-primary" onclick="acceptCookies()">Accept and Continue</button>
+                <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#cookieModal">Customize Cookies</button>
+            </div>
+        </div>
+        <button type="button" class="cookie-close btn-close" onclick="hideCookieBanner()" >X</button>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+    </div>
+
+
+
+
+    <!-- Cookie Preferences Modal -->
+<!-- Cookie Preferences Modal -->
+<div class="modal fade" id="cookieModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-custom-size">  <!-- Custom class for modal width -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Privacy Preference Center</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <p class="cookie-intro">
+                    When you visit any website, it may store or retrieve information on your browser, mostly in the form of cookies. This information might be about you, your preferences, or your device and is mostly used to make the site work as you expect it to. The information does not usually directly identify you, but it can give you a more personalized web experience. Because we respect your right to privacy, you can choose not to allow some types of cookies. However, blocking some types of cookies may impact your experience of the site and the services we are able to offer. For more details, check our Cookie Policy.
+                </p>
+
+                <!-- Accept All Button -->
+                <div class="accept-all-container">
+                    <button class="btn btn-primary btn-sm">Accept All</button>
+                </div>
+
+                <!-- Strictly Necessary Cookies -->
+                <div class="cookie-category">
+                    <span><strong>Strictly Necessary Cookies</strong></span>
+                    <span class="text-blue">Always Active</span>
+                </div>
+                <p class="cookie-description">
+                    These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in, or filling in forms.
+                </p>
+
+                <!-- Performance Cookies -->
+                <div class="cookie-category">
+                    <span><strong>Performance Cookies</strong></span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">
+                    These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us to know which pages are the most and least popular and see how visitors move around the site.
+                </p>
+
+                <!-- Functional Cookies -->
+                <div class="cookie-category">
+                    <span><strong>Functional Cookies</strong></span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">
+                    These cookies enable the website to provide enhanced functionality and personalization. They may be set by us or by third-party providers whose services we have added to our pages.
+                </p>
+
+                <!-- Social Media Cookies -->
+                <div class="cookie-category">
+                    <span><strong>Social Media Cookies</strong></span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">
+                    These cookies are set by a range of social media services that we have added to the site to enable you to share our content with your friends and networks.
+                </p>
+
+                <!-- Targeting Cookies -->
+                <div class="cookie-category">
+                    <span><strong>Targeting Cookies</strong></span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <p class="cookie-description">
+                    These cookies may be set through our site by our advertising partners. They may be used by those companies to build a profile of your interests and show you relevant adverts on other sites.
+                </p>
+
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-outline-secondary btn-sm">Reject All</button>
+                <button class="btn btn-primary btn-sm">Save Preferences</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Language Selection Modal -->
+    <div class="modal fade" id="languageModal" tabindex="-1" aria-labelledby="languageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="languageModalLabel">Select the Language</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="language-grid">
+                        <button id="privacyEnglish">1. English</button>
+                        <button id="privacyHindi">2. Hindi</button>
+                        <button>3. Assamese</button>
+                        <button>4. Bengali</button>
+                        <button>5. Bodo</button>
+                        <button>6. Dogri</button>
+                        <button>7. Gujarati</button>
+                        <button>8. Kannada</button>
+                        <button>9. Kashmiri</button>
+                        <button>10. Konkani</button>
+                        <button>11. Malayalam</button>
+                        <button>12. Manipuri</button>
+                        <button>13. Marathi</button>
+                        <button>14. Maithili</button>
+                        <button>15. Nepali</button>
+                        <button>16. Oriya</button>
+                        <button>17. Punjabi</button>
+                        <button>18. Sanskrit</button>
+                        <button>19. Santhali</button>
+                        <button>20. Sindhi</button>
+                        <button>21. Tamil</button>
+                        <button>22. Telugu</button>
+                        <button>23. Urdu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- PDF Modal -->
+<!-- PDF Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Privacy Notice</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="pdfViewer" class="pdf-container" style="width: 100%; height: 80vh;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Hide cookie banner if already accepted
+    if (localStorage.getItem("cookiesAccepted") === "true") {
+        document.querySelector(".cookie-banner").style.display = "none";
+    }
+
+    // Function to accept cookies
+    window.acceptCookies = function () {
+        document.querySelector(".cookie-banner").style.display = "none";
+        localStorage.setItem("cookiesAccepted", "true");
+    };
+
+    // Function to hide cookie banner manually
+    window.hideCookieBanner = function () {
+        document.querySelector(".cookie-banner").style.display = "none";
+    };
+
+    // Handle PDF opening for English and Hindi
+    document.getElementById("privacyEnglish").addEventListener("click", function () {
+        openPdf("Privacy Notice_YesBank.pdf");
+    });
+
+    document.getElementById("privacyHindi").addEventListener("click", function () {
+        openPdf("Privacy Notice_YesBank - Hindi.pdf");
+    });
+
+    function openPdf(pdfUrl) {
+        var pdfViewer = document.getElementById("pdfViewer");
+        pdfViewer.src = pdfUrl;
+
+        // Hide the language selection modal
+        var languageModal = bootstrap.Modal.getInstance(document.getElementById("languageModal"));
+        if (languageModal) {
+            languageModal.hide();
+        }
+
+        // Show the PDF modal
+        var pdfModal = new bootstrap.Modal(document.getElementById("pdfModal"));
+        pdfModal.show();
+    }
+});
+
+</script>
+
+
+</body>
+</html>
